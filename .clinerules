@@ -1,0 +1,17 @@
+# Project guidance
+
+This is a Streamlit / AgGrid activity scanner for Binance USDT perpetuals.
+Read WORKFLOW.md and CODEBASE_INDEX.md before changing behavior.
+
+- Default to $10m adjustable 24h volume, 5-minute completed candles, Manual refresh.
+- Preserve the nine-column Activity, eight-column Strong Movers, and nine-column Market Relative tables; formatting is display-only.
+- Market Relative uses 1h/4h/8h/1d return gaps against BTC and leave-one-out alt medians. It has no Z-score, composite score, or history writes.
+- Missing, invalid and stale data are not zeros and cannot produce active events.
+- Fetch only eligible-volume contracts; derivatives are explicit pair details.
+- Cache by source and completed-bar boundary; display interactions do not fetch.
+- Keep shared endpoint budgets and 429/418 cooldown checks before dispatch.
+- Preserve legacy database tables; version any new scoring/history changes.
+- Use actual price returns and indexed nearest observations for follow-through.
+- No probability guarantees, trading advice, or history-based ranking boosts.
+- Test behavior against isolated fixtures. Never seed the production database.
+- Read relevant Streamlit skill references, then run pytest and bounded live checks.
